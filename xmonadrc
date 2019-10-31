@@ -1,0 +1,9 @@
+import XMonad
+import XMonad.Config.Azerty
+
+myTerminal = "lxterminal"
+
+main = xmonad azertyConfig
+    { terminal = myTerminal
+    , modMask = mod4Mask
+    }
