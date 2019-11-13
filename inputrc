@@ -1,0 +1,34 @@
+# Use Vi, not Emacs, style editing
+set editing-mode vi
+set show-mode-in-prompt on
+set vi-cmd-mode-string (c)
+set vi-ins-mode-string (i)
+
+# Show all completions as soon as I press tab, even if there's more than one
+set show-all-if-ambiguous on
+# Ignore case
+set completion-ignore-case on
+# on menu-complete, first display the common prefix, then cycle 
+set menu-complete-display-prefix on
+
+# Keymaps for when we're in command mode (e.g., after hitting ESC)
+set keymap vi-command
+
+# When hitting option-up/option-down, cycle through the previous commands
+# which start with the prefix you've entered, rather than just cycling through
+# the last entered commands.
+# In OS X's Terminal.app preferences, I have 'Use option as meta key' off, and
+# have mapped "option cursor up" to "\033\033[A" and "option cursor down" to 
+# "\033\033[B".
+# Feel free to bind to whatever you want. Delete the first '\e' in the keymap
+# to set plain up/down to do a history search by default.
+"\C-k": history-search-backward
+"\C-j": history-search-forward
+
+###########################################################
+# Keymaps for when we're in insert (i.e., typing stuff in) mode
+set keymap vi-insert
+
+# Option-up/option-down should also apply to insert mode
+"\C-k": history-search-backward
+"\C-j": history-search-forward

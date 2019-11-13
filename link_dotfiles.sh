@@ -12,8 +12,8 @@ function make_link {
     fi
 }
 
-# ln -s `pwd`/bashrc ~/.bashrc ##  NOT IMPLEMENTED
-# ln -s `pwd`/inputrc ~/.inputrc ##  NOT IMPLEMENTED
+make_link bashrc ~/.bashrc
+make_link inputrc ~/.inputrc
 
 make_link vimrc ~/.vimrc
 make_link vifmrc ~/.config/vifm/vifmrc
