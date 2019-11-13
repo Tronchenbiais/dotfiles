@@ -48,4 +48,7 @@ fi
 # some more ls aliases
 alias ll='ls -la'
 alias la='ls -A'
+alias vicd="cd \$(vifm --choose-dir -)"
+alias vihelp='vim -c ":help | only"'
+alias vimrc='vim ~/.vimrc'
 
