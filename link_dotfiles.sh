@@ -19,4 +19,4 @@ make_link vimrc ~/.vimrc
 make_link vifmrc ~/.config/vifm/vifmrc
 make_link xmonadrc ~/.xmonad/xmonad.hs
 
-# ln -s `pwd`/xsessionrc ~/.xsessionrc ##  NOT IMPLEMENTED
+make_link xsessionrc ~/.xsessionrc
