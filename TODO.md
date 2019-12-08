@@ -1,5 +1,6 @@
 _Urgent_
-**Yay nothing left**
+- add git global config
+- git completion seems broken
 
 
 _Less Urgent_
