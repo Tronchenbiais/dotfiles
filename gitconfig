@@ -1,0 +1,21 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Quentin PLAZAR
+	email = quentinplaz@hotmail.com
+
+[diff]
+	tool = vimdiff
+
+[alias]
+	ff = merge --ff-only
+        ch = checkout
+        st = status
+        co = commit
+        ca = commit --amend
+        go = commit -a
+        dt = difftool
+        ol = log --oneline
+
+
+[difftool]
+	prompt = false
