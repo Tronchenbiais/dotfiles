@@ -1,3 +1,7 @@
 xscreensaver -no-splash &
 
-xmonad
+pulseaudio --start &
+
+compton &
+
+feh --bg-scale ~/wallpaper/middleEarth.jpg

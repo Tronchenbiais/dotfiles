@@ -15,8 +15,9 @@ function make_link {
 make_link bashrc ~/.bashrc
 make_link inputrc ~/.inputrc
 
-make_link vimrc ~/.vimrc
+make_link vimrc ~/.config/nvim/init.vim
 make_link vifmrc ~/.config/vifm/vifmrc
 make_link xmonadrc ~/.xmonad/xmonad.hs
 
 make_link xsessionrc ~/.xsessionrc
+make_link img/middleEarth.jpg ~/wallpaper/middleEarth.jpg

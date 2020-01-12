@@ -2,8 +2,9 @@ import Data.Map
 import XMonad
 import XMonad.Config.Azerty
 import XMonad.Util.EZConfig
+import XMonad.Layout.Spacing
 
-myTerminal = "lxterminal"
+myTerminal = "terminator"
 myBrowser  = "qutebrowser"
 mySreenLockCmd = "xscreensaver-command -lock"
 myKeys = 
@@ -16,4 +17,5 @@ myKeys =
 main = xmonad $ azertyConfig
     { terminal = myTerminal
     , modMask = mod4Mask
+    , layoutHook = spacingRaw True (Border 0 0 0 0) True (Border 5 5 5 5) True $ layoutHook def
     } `additionalKeysP` myKeys

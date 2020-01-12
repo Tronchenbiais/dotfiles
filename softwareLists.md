@@ -7,16 +7,15 @@ _Base_ :
 - git
 - vifm
 - zathura
+- lxterminal
+- feh
+- xscreensaver
+- pulseaudio
+- pavucontrol
 
 editor:
 - neovim
 - fzf
-
-_Mail_ :
-- sup-mail
-- sqlite
-- msmtp
-- offlineimap
 
 _Web_ :
 - qutebrowser
