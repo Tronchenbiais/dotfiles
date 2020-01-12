@@ -3,11 +3,12 @@
 
 _Base_ :
 - xmonad
+- xmobar
 - xorg
 - git
 - vifm
 - zathura
-- lxterminal
+- terminator
 - feh
 - xscreensaver
 - pulseaudio
