@@ -8,7 +8,7 @@ set vi-ins-mode-string (i)
 set show-all-if-ambiguous on
 # Ignore case
 set completion-ignore-case on
-# on menu-complete, first display the common prefix, then cycle 
+# Complete common prefix before cycling
 set menu-complete-display-prefix on
 
 # Keymaps for when we're in command mode (e.g., after hitting ESC)
@@ -22,6 +22,9 @@ set keymap vi-command
 ###########################################################
 # Keymaps for when we're in insert (i.e., typing stuff in) mode
 set keymap vi-insert
+
+Tab: menu-complete
+"\e[Z": menu-complete-backward
 
 # History search also applies to insert mode
 "\C-k": history-search-backward

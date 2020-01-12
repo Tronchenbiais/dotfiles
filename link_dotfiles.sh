@@ -19,7 +19,7 @@ make_link terminatorrc ~/.config/terminator/config
 make_link vimrc ~/.config/nvim/init.vim
 make_link vifmrc ~/.config/vifm/vifmrc
 make_link xmonad.hs ~/.xmonad/xmonad.hs
-make_link xmobar.hs ~/.config/xmobar/xmobarrc
+make_link xmobar.hs ~/.xmobarrc
 
 make_link xsessionrc ~/.xsessionrc
 make_link img/middleEarth.jpg ~/wallpaper/middleEarth.jpg
