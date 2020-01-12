@@ -16,6 +16,7 @@ myKeys =
     , ("M-w", kill)
     , ("M-f", spawn (myTerminal ++ " -e vifm"))
     , ("M-S-l", spawn mySreenLockCmd)
+    , ("M-p", spawn "rofi -show drun")
     ]
 
 mySpacedLayout =

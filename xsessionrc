@@ -1,7 +1,7 @@
+feh --bg-scale ~/wallpaper/middleEarth.jpg
+
 xscreensaver -no-splash &
 
 pulseaudio --start &
 
 compton &
-
-feh --bg-scale ~/wallpaper/middleEarth.jpg

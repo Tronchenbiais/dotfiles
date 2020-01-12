@@ -13,6 +13,7 @@ _Base_ :
 - xscreensaver
 - pulseaudio
 - pavucontrol
+- rofi or dmenu
 
 editor:
 - neovim
