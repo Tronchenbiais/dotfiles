@@ -4,11 +4,12 @@ import XMonad.Config.Azerty
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
+import XMonad.Layout.Tabbed
 import XMonad.Util.EZConfig
 import XMonad.Util.Run(spawnPipe) 
 import System.IO
 
-myTerminal = "terminator"
+myTerminal = "lxterminal"
 myBrowser  = "qutebrowser"
 mySreenLockCmd = "xscreensaver-command -lock"
 myKeys = 
@@ -28,13 +29,23 @@ mySpacedLayout =
         -- Window border
         (Border 5 5 5 5) True 
 
+myBaseLayout = Tall 1 (2/100) (1/2) |||
+               Mirror (Tall 1 (2/100) (1/2)) |||
+               simpleTabbed
+
+myManageHook = composeAll
+    [ className =? "Xmessage" --> doFloat
+    , title =? "vim-float" --> doFloat
+    , manageDocks
+    ]
+
 main = do
     status <- spawnPipe "/usr/bin/xmobar"
     xmonad $ docks azertyConfig
         { terminal = myTerminal
         , modMask = mod4Mask
-        , manageHook = manageDocks <+> manageHook defaultConfig
-        , layoutHook = avoidStruts $ mySpacedLayout $ layoutHook defaultConfig
+        , manageHook = myManageHook <+> manageHook defaultConfig
+        , layoutHook = avoidStruts $ mySpacedLayout $ myBaseLayout
         , logHook = dynamicLogWithPP $ xmobarPP
             { ppOutput = hPutStrLn status
             , ppTitle = xmobarColor "green" "" . shorten 50
