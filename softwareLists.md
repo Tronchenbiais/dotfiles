@@ -2,26 +2,29 @@
 ## Software lists
 
 _Base_ :
+- git
 - xmonad
 - xmobar
 - xorg
-- git
-- vifm
-- zathura
-- terminator
+- lxterminal
 - feh
 - xscreensaver
 - pulseaudio
 - pavucontrol
+
+utils:
+- fzf
+- cmus
+- mpv
+- vifm
 - rofi or dmenu
+- zathura
 
 editor:
 - neovim
-- fzf
 
 _Web_ :
 - qutebrowser
-- mpv
 
 _Dev_ :
 - cmake
