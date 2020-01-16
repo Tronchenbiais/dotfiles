@@ -17,7 +17,7 @@ make_link inputrc ~/.inputrc
 
 make_link gitconfig ~/.gitconfig
 
-make_link terminatorrc ~/.config/terminator/config
+make_link lxterminal.conf ~/.config/lxterminal/lxterminal.conf
 make_link vimrc ~/.config/nvim/init.vim
 make_link vifmrc ~/.config/vifm/vifmrc
 
