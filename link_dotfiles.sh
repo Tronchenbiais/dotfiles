@@ -23,6 +23,6 @@ make_link vifmrc ~/.config/vifm/vifmrc
 
 make_link xsessionrc ~/.xsessionrc
 make_link xmonad.hs ~/.xmonad/xmonad.hs
-make_link xmobar.hs ~/.xmobarrc
+make_link compton.conf ~/.config/compton.conf
 
 make_link img/middleEarth.jpg ~/wallpaper/middleEarth.jpg
