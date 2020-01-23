@@ -1,5 +1,6 @@
 import Data.Map
 import XMonad
+import XMonad.Actions.CycleWS
 import XMonad.Config.Azerty
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -11,13 +12,18 @@ import System.IO
 
 myTerminal = "lxterminal"
 myBrowser  = "qutebrowser"
-mySreenLockCmd = "xscreensaver-command -lock"
+mySreenLockCmd = "dm-tool lock"
 myKeys = 
     [ ("M-b", spawn myBrowser)
     , ("M-w", kill)
     , ("M-f", spawn (myTerminal ++ " -e vifm"))
     , ("M-S-l", spawn mySreenLockCmd)
     , ("M-p", spawn "rofi -show drun")
+    , ("M-Tab", nextScreen)
+    , ("M-S-Tab", prevScreen)
+    , ("M-n", nextScreen)
+    , ("M-,", nextWS)
+    , ("M-;", nextWS)
     ]
 
 mySpacedLayout =
@@ -43,6 +49,7 @@ main = do
     status <- spawnPipe "/usr/bin/xmobar"
     xmonad $ docks azertyConfig
         { terminal = myTerminal
+        , workspaces = ["1:dev", "2:web", "3:misc", "4:sys"]
         , modMask = mod4Mask
         , manageHook = myManageHook <+> manageHook defaultConfig
         , layoutHook = avoidStruts $ mySpacedLayout $ myBaseLayout

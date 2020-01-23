@@ -7,6 +7,9 @@ esac
 # Use vim as default editor
 export EDITOR="vim"
 
+# Use local path
+export PATH="~/.local/bin:$PATH"
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth

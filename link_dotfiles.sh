@@ -25,4 +25,4 @@ make_link xsessionrc ~/.xsessionrc
 make_link xmonad.hs ~/.xmonad/xmonad.hs
 make_link compton.conf ~/.config/compton.conf
 
-make_link img/middleEarth.jpg ~/wallpaper/middleEarth.jpg
+make_link img/middleEarth.jpg ~/wallpaper/wallpaper

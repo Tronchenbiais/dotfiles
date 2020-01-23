@@ -30,3 +30,7 @@ _Dev_ :
 - cmake
 - build-essentials
 - ccls (for C/C++ dev)
+
+# Trying out
+- lightdm ?
+
