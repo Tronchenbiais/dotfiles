@@ -3,12 +3,13 @@
 
 _Base_ :
 - git
+- xorg
+- lightdm
 - xmonad
 - xmobar
-- xorg
 - lxterminal
 - feh
-- xscreensaver
+- xautolock
 - pulseaudio
 - pavucontrol
 
@@ -30,7 +31,4 @@ _Dev_ :
 - cmake
 - build-essentials
 - ccls (for C/C++ dev)
-
-# Trying out
-- lightdm ?
 

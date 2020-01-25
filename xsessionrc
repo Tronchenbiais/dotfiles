@@ -1,5 +1,5 @@
 feh --bg-scale ~/wallpaper/wallpaper
 
-xscreensaver -no-splash &
+xautolock -time 10 -locker "dm-tools lock" &
 
 compton &
