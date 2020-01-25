@@ -1,0 +1,10 @@
+configuration {
+        modi: "drun,window,ssh";
+        m: "-4";
+        sidebar-mode: true;
+        show-icons: true;
+        matching: "normal";
+        scroll-method: 0;
+/*      window-format: "{w}    {i}{c}   {t}";*/
+        theme: "/usr/share/rofi/themes/gruvbox-light-soft.rasi";
+}
