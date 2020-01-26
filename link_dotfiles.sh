@@ -21,7 +21,7 @@ make_link lxterminal.conf ~/.config/lxterminal/lxterminal.conf
 make_link vimrc ~/.config/nvim/init.vim
 make_link vifmrc ~/.config/vifm/vifmrc
 
-make_link xsessionrc ~/.xsessionrc
+make_link xmonad-session-rc ~/.xmonad/xmonad-session-rc
 make_link xmonad.hs ~/.xmonad/xmonad.hs
 make_link compton.conf ~/.config/compton.conf
 make_link rofi.rasi ~/.config/rofi/config.rasi

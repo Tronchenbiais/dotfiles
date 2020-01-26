@@ -3,6 +3,7 @@ import Data.List
 import XMonad
 import qualified XMonad.StackSet as W
 import XMonad.Actions.CycleWS
+import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.OnScreen
 import XMonad.Config.Azerty
 import XMonad.Hooks.DynamicLog
@@ -68,18 +69,25 @@ myKeys conf =
     , ("M-f", spawn (myTerminal ++ " -e vifm"))
     , ("M-S-l", spawn mySreenLockCmd)
     , ("M-p", spawn "rofi -show drun")
-    , ("M-Tab", nextScreen)
-    , ("M-S-Tab", prevScreen)
-    , ("M-n", nextScreen)
+    , ("M-n", onNextNeighbour def W.view)
+    , ("M-S-n", composeAll
+        [ onNextNeighbour def W.shift
+        , onNextNeighbour def W.view
+        ])
     , ("M-,", windows $ onAllScreens' prevVirtualWS)
     , ("M-;", windows $ onAllScreens' nextVirtualWS)
     , ("M-S-,", windows $ prevVirtualWS)
     , ("M-S-;", windows $ nextVirtualWS)
     ] ++
     [(("M-S-" ++ key), windows $ onCurrentScreen W.shift workspace)
-        | (workspace, key) <- zip (workspaces' conf) wpKeys ] ++
+        | (workspace, key) <- zip (workspaces' conf) wpKeys ] 
+    ++
     [(("M-" ++ key), windows $ onAllScreens W.greedyView workspace)
-        | (workspace, key) <- zip (workspaces' conf) wpKeys ]
+        | (workspace, key) <- zip (workspaces' conf) wpKeys ] 
+    ++
+    [((mod ++ key), action screen)
+        | (screen, key) <- zip [0..] ["a","z","e","r"]
+        , (mod, action) <- [("M-", viewScreen def), ("M-S-", sendToScreen def)]]
 
 mySpacedLayout =
     spacingRaw
