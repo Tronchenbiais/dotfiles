@@ -16,6 +16,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Util.EZConfig
 import XMonad.Util.Run(spawnPipe) 
+import XMonad.Util.Themes
 import qualified XMonad.StackSet as W
 
 -- General Settings
@@ -77,7 +78,7 @@ wpKeys = ["&","é","\"","'","(","-","è","_","ç","à"]
 -- Key bindings
 myKeys conf = 
     [ ("M-b", spawn myBrowser)
-    , ("M-w", kill)
+    , ("M-<Backspace>", kill)
     , ("M-BS", kill)
     , ("M-f", spawn (myTerminal ++ " -e vifm"))
     , ("M-S-l", spawn mySreenLockCmd)
@@ -118,12 +119,22 @@ mySpacedLayout =
         -- Screen border
         (Border 0 0 0 0) True 
         -- Window border
-        (Border 5 5 5 5) True 
+        (Border 3 3 3 3) True 
 
 -- Layouts
-myBaseLayout = Tall 1 (2/100) (1/2) |||
-               Mirror (Tall 1 (2/100) (1/2)) |||
-               simpleTabbed
+myTheme = (theme xmonadTheme)
+    { activeColor = "#666666"
+    , inactiveColor = "#444444"
+    , decoHeight = 20
+    , fontName = "xft:Courrier:pixelsize=12"
+    }
+
+tallLayout = Tall 1 (2/100) (1/2)
+tabbedLayout = tabbed shrinkText myTheme
+
+myBaseLayout = tallLayout |||
+               Mirror tallLayout |||
+               tabbedLayout
 
 -- Floating windows
 myManageHook = composeAll

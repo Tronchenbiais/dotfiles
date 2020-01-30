@@ -1,5 +1,5 @@
 Config {
-       font = "xft:Courier:pixelsize=12",
+       font = "xft:Courier:pixelsize=14",
        commands = [
                 -- Addison, TX
                 Run CoreTemp ["-t", "Temp: <core0>°c"] 10,
