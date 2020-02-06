@@ -10,18 +10,21 @@ _Base_ :
 - lxterminal
 - feh
 - xautolock
+- compton
+
+_Audio_ :
 - pulseaudio
 - pavucontrol
 
-utils:
+_Utils_:
 - fzf
 - cmus
 - mpv
 - vifm
-- rofi or dmenu
+- rofi
 - zathura
 
-editor:
+_Editor_:
 - neovim
 
 _Web_ :
@@ -30,5 +33,5 @@ _Web_ :
 _Dev_ :
 - cmake
 - build-essentials
-- ccls (for C/C++ dev)
+- ccls
 
