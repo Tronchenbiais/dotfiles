@@ -130,7 +130,7 @@ myTheme = (theme xmonadTheme)
     }
 
 tallLayout = Tall 1 (2/100) (1/2)
-tabbedLayout = tabbed shrinkText myTheme
+tabbedLayout = tabbedBottom shrinkText myTheme
 
 myBaseLayout = tallLayout |||
                Mirror tallLayout |||
