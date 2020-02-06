@@ -34,7 +34,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$\n '
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -66,9 +66,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -la'
+alias ll='ls -lah'
 alias la='ls -A'
-alias vicd="cd \$(vifm --choose-dir -)"
+alias vicd='cd $(vifm --choose-dir -)'
 alias vihelp='vim -c ":help | only"'
 alias vimrc='vim ~/.vimrc'
+alias ,sdir='pwd | xclip'
+alias ,pdir='cd $(xclip -o)'
 
