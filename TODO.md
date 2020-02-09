@@ -1,6 +1,5 @@
 _Less Urgent_
-- packages and install scripts
-- ask user if file already exists
-    - For now a '--force' option would be enough
+- add a `--force` option for `link_dotfiles.sh`
+- add an option to choose Core, minimal or full package install
 - backup the following configs :
     - qutebrowser
