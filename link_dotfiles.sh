@@ -6,7 +6,7 @@ function make_link {
     then
         echo -n "Replace $src? ('n' to keep, anything else overrides)"
         read replace
-        if [ $replace == "n" ]
+        if [ -n $replace -a $replace == "n" ]
         then
             echo "$src skipped"
             echo ""
