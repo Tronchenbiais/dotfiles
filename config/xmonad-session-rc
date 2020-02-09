@@ -4,9 +4,9 @@ xautolock -time 10 -locker "dm-tools lock" &
 
 # Use CapsLock as escape, disable escape
 setxkbmap -option "caps:escape"
-xmodmap -e "keycode  9 = NoSymbol"
+xmodmap -e "keycode 9 = NoSymbol"
 
 # input circumflex on one keystroke (use Alt for regular use)
-xmodmap -e "keycode  34 = acsiicircum grave dead_circumflex dead_diaeresis dead_circumflex dead_diaeresis dead_tilde"
+xmodmap -e "keycode 34 = asciicircum grave dead_circumflex dead_diaeresis dead_circumflex dead_diaeresis dead_tilde"
 
 compton &
