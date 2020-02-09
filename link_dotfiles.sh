@@ -30,6 +30,7 @@ make_link config/vifmrc ~/.config/vifm/vifmrc
 
 make_link config/xmonad-session-rc ~/.xmonad/xmonad-session-rc
 make_link config/xmonad.hs ~/.xmonad/xmonad.hs
+make_link config/xmobar.hs ~/.xmobarrc
 make_link config/compton.conf ~/.config/compton.conf
 make_link config/rofi.rasi ~/.config/rofi/config.rasi
 
