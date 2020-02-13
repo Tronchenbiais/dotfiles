@@ -4,6 +4,9 @@ case $- in
       *) return;;
 esac
 
+# Use vim bindings in command line (already set in `inputrc`, but necessary for
+# fzf mappings to work properly
+set -o vi
 # Use vim as default editor
 export EDITOR="vim"
 
