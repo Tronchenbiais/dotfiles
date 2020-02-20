@@ -13,13 +13,17 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.FadeInactive
+import           XMonad.Hooks.InsertPosition
+import           XMonad.Hooks.FadeWindows       ( isFloating )
 import XMonad.Layout.IndependentScreens
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Layout.WorkspaceDir
 import XMonad.Util.EZConfig
-import XMonad.Util.Run(spawnPipe) 
+import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.Themes
 import qualified XMonad.StackSet as W
 
@@ -27,7 +31,9 @@ import qualified XMonad.StackSet as W
 myTerminal = "lxterminal"
 myBrowser  = "qutebrowser"
 mySreenLockCmd = "dm-tool lock"
+myLauncherCmd = "rofi -show drun"
 myVirtualWSs = ["1:web", "2:misc", "3:dev", "4:sys"]
+wpKeys = ["&","é","\"","'","(","-","è","_","ç","à"]
 
 -- Independent (synced) screens
 nextVirtualWSname :: VirtualWorkspace -> VirtualWorkspace
@@ -42,7 +48,7 @@ prevVirtualWSname vWorkSpace =
         Nothing -> head myVirtualWSs
         Just i -> myVirtualWSs !! (mod (i - 1) $ length myVirtualWSs)
 
-liftVirtualWSaction :: 
+liftVirtualWSaction ::
     (PhysicalWorkspace -> WindowSet -> WindowSet) ->
     (VirtualWorkspace -> VirtualWorkspace) -> WindowSet -> WindowSet
 liftVirtualWSaction action wsAction stackset =
@@ -67,9 +73,9 @@ onAllScreens' action windowSet =
     foldr (.) id
         [ onScreen action FocusCurrent screen
             | screen <- map S [0..(length $ W.screens windowSet) - 1]
-        ] $ windowSet
+        ] windowSet
 
-onAllScreens :: (PhysicalWorkspace -> WindowSet -> WindowSet) -> VirtualWorkspace 
+onAllScreens :: (PhysicalWorkspace -> WindowSet -> WindowSet) -> VirtualWorkspace
     -> WindowSet -> WindowSet
 onAllScreens action workspace windowSet =
     foldr (.) id
@@ -77,18 +83,31 @@ onAllScreens action workspace windowSet =
             | screen <- map S [0..(length $ W.screens windowSet) - 1]
         ] $ windowSet
 
-wpKeys = ["&","é","\"","'","(","-","è","_","ç","à"]
+-- Floating windows
+
+floatingRect = W.RationalRect
+                ( 5 / 100) -- Right margin
+                (50 / 100) -- Top margin
+                (40 / 100) -- Width
+                (40 / 100) -- Height
+
+myFloatAction win = W.float win floatingRect
+
+floatHook = insertPosition End Newer <+> doFloatDep (const floatingRect)
 
 -- Key bindings
-myKeys conf = 
+myKeys conf =
     [ ("M-b", spawn myBrowser)
     , ("M-<Backspace>", kill)
     , ("M-BS", kill)
     , ("M-!", spawn (myTerminal ++ " -t lxterminal-float"))
     , ("M-f", spawn (myTerminal ++ " -e vifm"))
     , ("M-S-l", spawn mySreenLockCmd)
-    , ("M-p", spawn "rofi -show drun")
-    , ("M-d", changeDir myPromptTheme)
+    , ("M-p", spawn myLauncherCmd)
+    , ("M-c", changeDir myPromptTheme)
+    , ("M-S-t", withFocused $ windows . (myFloatAction))
+    , ("M-o", withFocused $ fadeOut (30/100))
+    , ("M-S-o", withFocused $ fadeIn)
     , ("M-n", onNextNeighbour def W.view)
     , ("M-S-n", composeAll
         [ onNextNeighbour def W.shift
@@ -96,11 +115,11 @@ myKeys conf =
         ])
     , ("M-,", windows $ onAllScreens' prevVirtualWS)
     , ("M-;", windows $ onAllScreens' nextVirtualWS)
-    , ("M-S-,", composeAll 
+    , ("M-S-,", composeAll
         [ windows $ shiftPrevVirtualWS
         , windows $ onAllScreens' prevVirtualWS
         ])
-    , ("M-S-;", composeAll 
+    , ("M-S-;", composeAll
         [ windows $ shiftNextVirtualWS
         , windows $ onAllScreens' nextVirtualWS
         ])
@@ -108,10 +127,10 @@ myKeys conf =
     , ("M-C-;", windows $ nextVirtualWS)
     ] ++
     [(("M-S-" ++ key), windows $ onCurrentScreen W.shift workspace)
-        | (workspace, key) <- zip (workspaces' conf) wpKeys ] 
+        | (workspace, key) <- zip (workspaces' conf) wpKeys ]
     ++
     [(("M-" ++ key), windows $ onAllScreens W.greedyView workspace)
-        | (workspace, key) <- zip (workspaces' conf) wpKeys ] 
+        | (workspace, key) <- zip (workspaces' conf) wpKeys ]
     ++
     [((mod ++ key), action screen)
         | (screen, key) <- zip [0..] ["a","z","e","r"]
@@ -121,11 +140,11 @@ myKeys conf =
 mySpacedLayout =
     spacingRaw
         -- Use smart spacing (space only when 2 or more windows are open)
-        True 
+        True
         -- Screen border
-        (Border 0 0 0 0) True 
+        (Border 0 0 0 0) True
         -- Window border
-        (Border 3 3 3 3) True 
+        (Border 3 3 3 3) True
 
 -- Layouts
 myTheme = (theme xmonadTheme)
@@ -150,11 +169,13 @@ myCustomLayout = workspaceDir "~" myBaseLayout
 
 -- Floating windows
 myManageHook = composeAll
-    [ className =? "Xmessage" --> doFloat
-    , title =? "vim-float" --> doFloat
-    , title =? "lxterminal-float" --> doFloat
-    , title =? "mpv" --> (doF copyToAll) <+> doFloat
+    [ className =? "Xmessage" --> floatHook
+    , title =? "vim-float" --> floatHook
+    , title =? "lxterminal-float" --> floatHook
+    , className =? "mpv" --> (doF copyToAll) <+> floatHook
+    , insertPosition Below Newer
     , manageDocks
+    , manageHook def
     ]
 
 main = do
@@ -167,7 +188,7 @@ main = do
             , normalBorderColor = "black"
             , focusedBorderColor = "orange"
             , focusFollowsMouse = False
-            , manageHook = myManageHook <+> manageHook def
+            , manageHook = myManageHook
             , layoutHook = avoidStruts $ mySpacedLayout $ myCustomLayout
             , logHook = dynamicLogWithPP . marshallPP 0 $ xmobarPP
                 { ppOutput = hPutStrLn status
