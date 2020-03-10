@@ -1,5 +1,14 @@
 " vim: filetype=vifm :
 
+set vicmd=nvim
+
+colorscheme Gruvbox
+highlight TopLine ctermbg=Grey23
+highlight TopLineSel ctermbg=Grey23
+highlight Border ctermbg=Grey23
+highlight StatusLine ctermbg=Grey23
+
+
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
 " solution, it's also much slower when processing large amounts of files and

@@ -5,7 +5,7 @@ _General_:
 - add an option to choose Core, minimal or full package install
 - backup the following configs :
     - qutebrowser
-- find a mail client probably.
+- find a mail client probably. Neomutt ?
 
 _Individual config files_:
 - XMonad
@@ -13,4 +13,3 @@ _Individual config files_:
       actions
     - Custom LogHook to synthesise the state of all screens (urgent, which one
       is active, etc.)
-    - InsertPositions. Do we give focus to new windows ?
