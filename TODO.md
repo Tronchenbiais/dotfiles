@@ -13,3 +13,4 @@ _Individual config files_:
       actions
     - Custom LogHook to synthesise the state of all screens (urgent, which one
       is active, etc.)
+    - Cleanup useless stuff (do we really need `copyToAll` etc.)
