@@ -27,6 +27,7 @@ make_link config/gitconfig ~/.gitconfig
 make_link config/lxterminal.conf ~/.config/lxterminal/lxterminal.conf
 make_link vim/vimrc ~/.config/nvim/init.vim
 make_link config/vifmrc ~/.config/vifm/vifmrc
+make_link config/vifm/Gruvbox.vifm ~/.config/vifm/colors/Gruvbox.vifm
 
 make_link config/xmonad-session-rc ~/.xmonad/xmonad-session-rc
 make_link config/xmonad.hs ~/.xmonad/xmonad.hs
