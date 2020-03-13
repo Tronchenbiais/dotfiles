@@ -4,6 +4,8 @@ case $- in
       *) return;;
 esac
 
+export DOTFILES_DIR="$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")"
+
 # Use vim bindings in command line (already set in `inputrc`, but necessary for
 # fzf mappings to work properly
 set -o vi
@@ -51,30 +53,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then
-    source /usr/share/doc/fzf/examples/key-bindings.bash
+if [ -d $DOTFILES_DIR/config/bash ]; then
+    config_files="$DOTFILES_DIR/config/bash/*.bash"
+    for file in $config_files; do
+        source $file
+    done
 fi
-
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -lah'
-alias la='ls -A'
-alias vicd='cd $(vifm --choose-dir -)'
-alias vihelp='vim -c ":help | only"'
-alias vimrc='vim ~/.vimrc'
-alias vit='vim -c "Gstatus | only"'
-alias ,sdir='pwd | xclip'
-alias ,pdir='cd $(xclip -o)'
 
