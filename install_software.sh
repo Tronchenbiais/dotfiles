@@ -8,5 +8,5 @@ apt install -y neovim fzf vifm feh qutebrowser zathura
 apt install -y pulseaudio pavucontrol cmus mpv
 
 # Dev
-apt install -y cmake build-essentials ccls universal-ctags
+apt install -y cmake build-essential ccls universal-ctags
 
