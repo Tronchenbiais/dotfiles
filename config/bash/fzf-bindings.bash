@@ -13,6 +13,11 @@ __fzf_select__() {
 
 if [[ $- =~ i ]]; then
 
+fzf-edit-widget() {
+    local selected="$(__fzf_select__)"
+    edit $selected
+}
+
 fzf-file-widget() {
     local selected="$(__fzf_select__)"
     READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected${READLINE_LINE:$READLINE_POINT}"
@@ -53,6 +58,11 @@ bind '"\C-x\C-e": shell-expand-line'
 bind '"\C-x\C-r": redraw-current-line'
 bind '"\C-x^": history-expand-line'
 
+# CTRL-E - edit the selected file
+# - FIXME: Selected items are attached to the end regardless of cursor position
+bind -x '"\C-e": "fzf-edit-widget"'
+
+bind -m vi-command '"\C-t": "i\C-t"'
 # CTRL-T - Paste the selected file path into the command line
 # - FIXME: Selected items are attached to the end regardless of cursor position
 if [ $BASH_VERSINFO -gt 3 ]; then
