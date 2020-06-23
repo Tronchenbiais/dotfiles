@@ -3,6 +3,12 @@
 	name = Quentin PLAZAR
 	email = quentinplaz@hotmail.com
 
+[core]
+	pager = "nvim -R"
+
+[color]
+	pager = no
+
 [diff]
 	tool = vimdiff
 

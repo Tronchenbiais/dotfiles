@@ -9,8 +9,10 @@ export DOTFILES_DIR="$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")"
 # Use vim bindings in command line (already set in `inputrc`, but necessary for
 # fzf mappings to work properly
 set -o vi
-# Use vim as default editor
-export EDITOR="vim"
+# Use nvim as default editor, pager, manpager
+export EDITOR="nvim"
+export PAGER="nvim -R -"
+export MANPAGER="nvim -R -c 'set ft=man' -"
 
 # Use local path
 export PATH="~/.local/bin:$PATH"
