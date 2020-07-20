@@ -9,9 +9,9 @@ export PROJECT_SERVER_PID_FILE="/home/tronchy/dotfiles/projects/afdl/server_pid"
 
 function AfdlServerStart
 {
-    python "$PROJECT_ROOT/manage.py" runserver &> "$PROJECT_ROOT/server.log" &
+    nohup python "$PROJECT_ROOT/manage.py" runserver &> "$PROJECT_ROOT/server.log" &
     PROJECT_SERVER_PID=$!
-    echo $! > "$PROJECT_SERVER_PID_FILE"
+    echo $PROJECT_SERVER_PID > "$PROJECT_SERVER_PID_FILE"
 }
 
 function AfdlServerStop
