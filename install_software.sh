@@ -1,5 +1,5 @@
 # Core
-apt install -y git xorg lightdm compton xmonad xmobar lxterminal rofi wmctrl
+apt install -y git lightdm compton xmonad xmobar lxterminal rofi wmctrl
 
 # Minimal
 apt install -y neovim fzf vifm feh qutebrowser zathura
