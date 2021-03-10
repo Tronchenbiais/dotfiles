@@ -37,7 +37,7 @@ endif
 
 call lsp#register_server({
             \ 'name': 'pyls',
-            \ 'cmd': ['/home/tronchy/.local/bin/pyls'],
+            \ 'cmd': ['/home/tronchy/dotfiles/vim/.venv/bin/pyls'],
             \ 'whitelist': ['python'],
             \ })
 

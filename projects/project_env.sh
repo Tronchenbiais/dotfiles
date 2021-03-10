@@ -1,0 +1,3 @@
+export PROJECT_ROOT=""
+
+cd $PROJECT_ROOT

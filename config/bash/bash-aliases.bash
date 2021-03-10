@@ -16,9 +16,9 @@ alias la='ls -A'
 
 # vim commands
 alias vicd='cd $(vifm --choose-dir -)'
-alias vihelp='vim -c ":help | only"'
-alias vimrc='vim -c "Project vimrc"'
-alias vit='vim -c "Gstatus | only"'
+alias vihelp='nvim -c ":help | only"'
+alias vimrc='nvim -c "Project vimrc"'
+alias vit='nvim -c "Gstatus | only"'
 alias copyDir='pwd | xclip'
 alias pasteDir='cd $(xclip -o)'
 

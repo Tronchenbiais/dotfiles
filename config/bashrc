@@ -10,9 +10,10 @@ export DOTFILES_DIR="$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")"
 # fzf mappings to work properly
 set -o vi
 # Use nvim as default editor, pager, manpager
-export EDITOR="nvim"
-export PAGER="nvim -R -"
-export MANPAGER="nvim -R -c 'set ft=man' -"
+export VIM_CLONE=nvim
+export EDITOR="$VIM_CLONE"
+export PAGER="$VIM_CLONE -R -"
+export MANPAGER="$VIM_CLONE -R -c 'set ft=man' -"
 
 # Use local path
 export PATH="~/.local/bin:$PATH"
@@ -41,8 +42,13 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-BASE_PROMPT='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$\n '
-PS1=$BASE_PROMPT
+PROMPT_BASE="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]"
+PROMPT_BASE_DIR=$HOME
+function __prompt_dir {
+    realpath --relative-base=$PROMPT_BASE_DIR $PWD
+}
+
+PS1="\[\033[01;33m\]\$PROMPT_PROJECT$PROMPT_BASE:\[\033[01;34m\]\$(__prompt_dir)\[\033[00m\]\n"
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
